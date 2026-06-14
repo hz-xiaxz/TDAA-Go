@@ -20,6 +20,7 @@ _site/
 
 # Local notes / scratch
 local/
+.forge/
 */learn-log.md
 
 # Brainstorming spec drafts (kept local; not part of the course harness)
