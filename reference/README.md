@@ -39,12 +39,21 @@ The bootstrap process extracts the following from your materials. Anything not f
 
 Files are automatically converted to markdown during bootstrap:
 
-- **PDF** (.pdf) — via `pymupdf`
+- **PDF** (.pdf) — via `pymupdf` by default; optionally via MinerU for OCR/layout-aware extraction
 - **PowerPoint** (.pptx) — via `python-pptx`
 - **Word** (.docx) — via `python-docx`
 - **Markdown** (.md) / **Text** (.txt) — used directly, no conversion needed
 
 Legacy formats (.ppt, .doc) are not reliably supported. Convert them to .pptx/.docx first.
+
+For scanned or layout-heavy PDFs, install MinerU separately and run conversion with the MinerU backend:
+
+```bash
+uv pip install -U "mineru[pipeline]" six
+uv run python -m scripts.convert_references reference/ --pdf-backend mineru
+```
+
+The default PyMuPDF backend remains the lightweight path for text-based PDFs. The extra `six` package covers a small MinerU pipeline compatibility import required by current releases.
 
 ## What Happens During Bootstrap
 

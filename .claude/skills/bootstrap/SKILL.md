@@ -170,6 +170,15 @@ uv run python -m scripts.scan_references reference/
 uv run python -m scripts.convert_references reference/
 ```
 
+For scanned or layout-heavy PDFs, the conversion script can use MinerU instead of the default PyMuPDF backend. Install MinerU separately, then run:
+
+```bash
+uv pip install -U "mineru[pipeline]" six
+uv run python -m scripts.convert_references reference/ --pdf-backend mineru
+```
+
+Keep the default command for text-based PDFs; use MinerU when OCR, formulas, tables, or reading-order preservation matter more than lightweight setup. The extra `six` package covers a small MinerU pipeline compatibility import required by current releases.
+
 After conversion, report converted count and any errors. The `.md` files stay
 in `reference/` alongside the originals (binaries are gitignored, `.md` is
 checked in).
